@@ -1,0 +1,9 @@
+---
+- name: Gather package facts
+  package_facts:
+    manager: "apt"
+
+- name: Install Apache
+  package:
+    name: "apache2"
+    state: present
