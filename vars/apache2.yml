@@ -1,0 +1,22 @@
+---
+apache_remove_sites: []
+
+apache_create_sites:
+  - "elk.conf"
+  - "elk-ssl.conf"
+
+apache_enable_sites:
+  - "elk.conf"
+  - "elk-ssl.conf"
+
+root_email_address: "admin@example.com"
+
+
+###########################################
+apache2_server_admin: "admin@example.com"
+apache2_server_alias: "alias.example.com"
+apache2_server_name: "name.example.com"
+apache2_document_root: "/var/www/html"
+
+apache2_ssl_cert: "/path/to/cert/file"
+apache2_ssl_key: "/path/to/key/file"

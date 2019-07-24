@@ -1,9 +1,53 @@
 ---
-- name: Gather package facts
-  package_facts:
-    manager: "apt"
-
 - name: Install Apache
   package:
-    name: "apache2"
+    name: "{{ apache_package[ansible_os_family] }}"
     state: present
+
+- name: Create Apache2 sites-enabled folder
+  file:
+    path: "/etc/apache2/sites-enabled"
+    state: directory
+
+- name: Enable Apache modules
+  apache2_module:
+    name: "{{ item }}"
+    state: present
+  with_items: "{{ apache_modules }}"
+  notify:
+    - "restart apache2"
+
+- name: Create Apache sites
+  template:
+    src: "{{ item }}.j2"
+    dest: "/etc/apache2/sites-available/{{ item }}"
+    force: yes
+    mode: 0644
+  with_items: "{{ apache_create_sites }}"
+  when: apache_create_sites|length > 0
+
+- name: Get list of Apache enabled sites
+  command: ls /etc/apache2/sites-enabled
+  register: enabled_sites
+
+- name: Disable all Apache sites
+  command: a2dissite "{{ item }}"
+  with_items: "{{ enabled_sites.stdout_lines }}"
+  notify:
+    - "restart apache2"
+
+- name: Remove Apache site
+  file:
+    path: "/etc/apache2/sites-enabled/{{ item }}"
+    state: absent
+  with_items: "{{ apache_remove_sites }}"
+  when: apache_remove_sites|length > 0
+  notify:
+    - "restart apache2"
+
+- name: Enable Apache sites
+  command:  a2ensite "{{ item }}"
+  with_items: "{{ apache_enable_sites }}"
+  when: apache_enable_sites|length > 0
+  notify:
+    - "restart apache2"

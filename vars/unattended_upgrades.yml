@@ -1,0 +1,7 @@
+---
+
+origin_patterns:
+  - origin=Debian,codename=${distro_codename}
+  - origin=Debian,codename=${distro_codename}-updates
+  - origin=meta@cesnet.cz,a=stable
+  - origin=deb.sury.org
