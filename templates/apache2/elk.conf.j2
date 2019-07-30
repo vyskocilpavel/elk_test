@@ -1,0 +1,13 @@
+<VirtualHost *:80>
+
+        ServerName {{ apache2_server_name }}
+        ServerAlias {{ apache2_server_alias }}
+        ServerAdmin {{ apache2_server_admin }}
+        DocumentRoot {{ apache2_document_root }}
+
+        LogLevel {{ apache2_log_level }}
+
+        ErrorLog ${APACHE_LOG_DIR}/error.log
+        CustomLog ${APACHE_LOG_DIR}/access.log combined
+
+</VirtualHost>

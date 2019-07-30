@@ -1,0 +1,40 @@
+<IfModule mod_ssl.c>
+        <VirtualHost _default_:443>
+
+                ServerName {{ apache2_server_name }}
+                ServerAlias {{ apache2_server_alias }}
+                ServerAdmin {{ apache2_server_admin }}
+                DocumentRoot {{ apache2_document_root }}
+
+                LogLevel {{ apache2_log_level }}
+                ErrorLog ${APACHE_LOG_DIR}/error.log
+                CustomLog ${APACHE_LOG_DIR}/access.log combined
+
+                SSLEngine on
+
+                SSLCertificateFile {{ apache2_ssl_cert }}
+                SSLCertificateKeyFile {{ apache2_ssl_cert }}
+
+                <FilesMatch "\.(cgi|shtml|phtml|php)$">
+                                SSLOptions +StdEnvVars
+                </FilesMatch>
+                <Directory /usr/lib/cgi-bin>
+                                SSLOptions +StdEnvVars
+                </Directory>
+
+                SSLProxyEngine on
+                ProxyPreserveHost on
+                ProxyPass "/" "https://{{ apache2_server_name }}:5601/"
+                ProxyPassReverse "/" "https://{{ apache2_server_name }}:5601/"
+
+                <Location />
+                    AuthType Basic
+                    AuthName "Authentication Required"
+                    AuthUserFile "/etc/apache2/passwd"
+                    Require valid-user
+                    Order allow,deny
+                    Allow from all
+                </Location>
+
+        </VirtualHost>
+</IfModule>
