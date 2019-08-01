@@ -1,5 +1,4 @@
 ---
-# tasks file for shibboleth-perun
 - name: SWITCH repo key
   apt_key:
     id: 15B76742

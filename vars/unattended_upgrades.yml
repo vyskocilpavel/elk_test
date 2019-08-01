@@ -1,4 +1,7 @@
 ---
+###################
+# Module settings #
+###################
 origin_patterns:
   - origin=Debian,codename=${distro_codename}
   - origin=Debian,codename=${distro_codename}-updates

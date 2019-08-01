@@ -6,12 +6,14 @@
     - vars/apache2.yml
     - vars/unattended_upgrades.yml
     - vars/metacentrum_monitoring.yml
-    # - vars/shibboleth.yml
-    # - vars/yubikey.yml
+    - vars/shibboleth.yml
+    - vars/yubikey.yml
+    - vars/elastic.yml
   roles:
-    - {role: pajavyskocil.apache2, tag: install }
-    - {role: pajavyskocil.unattended_upgrades, tag: install }
-    - {role: pajavyskocil.metacentrum_monitoring, tag: install }
+    # - {role: pajavyskocil.apache2, tag: install }
+    # - {role: pajavyskocil.unattended_upgrades, tag: install }
+    # - {role: pajavyskocil.metacentrum_monitoring, tag: install }
     # - {role: pajavyskocil.yubikeys, tag: install }
-    # - {role: pajavyskocil.shibboleth, tag: install }
+#    - {role: pajavyskocil.shibboleth, tag: install }
+    - {role: pajavyskocil.elk_stack}
 

@@ -2,10 +2,10 @@
 dependencies: []
 
 galaxy_info:
-  role_name: apache2
+  role_name: elk-stack
   owner: pajavyskocil
   author: pajavyskocil
-  description: Apache 2.x for Linux.
+  description: Logstahs-elasticsearch-kibana
   license: "license (BSD, MIT)"
   min_ansible_version: 2.4
   platforms:
@@ -14,10 +14,8 @@ galaxy_info:
         - stretch
         - buster
   galaxy_tags:
-    - web
-    - apache
-    - webserver
-    - html
-    - httpd
+    - logstash
+    - elasticsearch
+    - kibana
 
 allow_duplicates: true

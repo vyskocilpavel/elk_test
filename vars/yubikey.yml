@@ -1,5 +1,7 @@
 ---
-
+###################
+# Module settings #
+###################
 install_yubikeys: true
 create_yubikey_users:
   - tesla
@@ -9,7 +11,6 @@ yubikey_id: ""
 yubikey_key: ""
 sudo_root_users: []
 sudo_perun_users: []
-
 
 yubikey_users:
   tesla:

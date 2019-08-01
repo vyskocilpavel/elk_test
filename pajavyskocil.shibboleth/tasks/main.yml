@@ -1,3 +1,6 @@
 ---
+# specific tasks
+- include_tasks: "{{ ansible_distribution }}-{{ ansible_distribution_major_version }}.yml"
+
 # common tasks
 - include_tasks: "{{ ansible_distribution }}.yml"

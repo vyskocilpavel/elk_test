@@ -1,24 +1,42 @@
 ---
+###################
+# Module settings #
+###################
+apache_package:
+  Debian:
+    - apache2
+    - cronolog
+
+apache_modules:
+  - headers
+  - ssl
+  - proxy
+  - proxy_http
+  - rewrite
+
+apache_service:
+  Debian:
+    apache2
+
 apache_remove_sites: []
 
 apache_create_sites:
-  - "apache2/elk.conf"
-  - "apache2/elk-ssl.conf"
+  - "elk.conf"
+  - "elk-ssl.conf"
 
 apache_enable_sites:
   - "elk.conf"
   - "elk-ssl.conf"
 
-root_email_address: "admin@example.com"
-
-
-###########################################
+#####################
+# Template settings #
+#####################
 apache2_server_admin: "admin@example.com"
 apache2_server_alias: "alias.example.com"
-apache2_server_name: "name.example.com"
+apache2_server_name: "{{ hostname }}"
 apache2_document_root: "/var/www/html"
 
 apache2_log_level: "debug"
 
-apache2_ssl_cert: "/path/to/cert/file"
-apache2_ssl_key: "/path/to/key/file"
+apache2_ssl_cert: "/etc/ssl/certs/ssl-cert-snakeoil.pem"
+apache2_ssl_key: "/etc/ssl/private/ssl-cert-snakeoil.key"

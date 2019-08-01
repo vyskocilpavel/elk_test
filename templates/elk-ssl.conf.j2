@@ -13,7 +13,7 @@
                 SSLEngine on
 
                 SSLCertificateFile {{ apache2_ssl_cert }}
-                SSLCertificateKeyFile {{ apache2_ssl_cert }}
+                SSLCertificateKeyFile {{ apache2_ssl_key }}
 
                 <FilesMatch "\.(cgi|shtml|phtml|php)$">
                                 SSLOptions +StdEnvVars

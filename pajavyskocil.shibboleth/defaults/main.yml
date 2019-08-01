@@ -1,7 +1,33 @@
 ---
+hostname: "sp_entityid.com"
+shib_sp_entity_id: "https://sp_entityid.com/sp/"
+shib_remote_user: 
+  - epuid
+  - eppn
+  - persistent-id
+  - targeted-id
 
-shib_namespace:
-  Debian_9: "urn:mace:shibboleth:3.0:native:sp:config"
-  Debian_10: "urn:mace:shibboleth:3.0:native:sp:config"
+shib_attribute_prefix: "AJP_"
 
-shib_xml_namespace: "{{shib_namespace[ansible_distribution+'_'+ansible_distribution_major_version]}}"
+shib_idp_entity_id: "https://idp_metadata.com/idp/"
+shib_idp_metadata_url: "https://idp_metadata.com/metadata"
+
+shib_attribute_map_allow_standard_urn_oid_attributes: True
+shib_attribute_map_allow_standard_urn_mace_attributes: False
+shib_attribute_map_allow_CHAC_attributes: True
+shib_attribute_map_add_custom_attributes: 
+  attr1:
+    name: "urn:oid:1.3.6.1.4.1.5923.1.1.1.13"
+    id: "epuid"
+    decoder: "ScopedAttributeDecoder"
+    comment: 
+  attr2:
+    name: "urn:mace:dir:attribute-def:eduPersonUniqueId"
+    id: "epuid"
+    decoder: "ScopedAttributeDecoder"
+    comment: "bbb"
+  attr3:
+    name: "urn:cesnet:proxyidp:attribute:IdPOrganizationName"
+    id: "IdPOrganizationName"
+    decoder: 
+    comment: "Source IdP Organization name"
