@@ -3,7 +3,7 @@
 - hosts: all
   remote_user: root
   vars:
-    action: "update"
+    action: "start"
   vars_files:
     - vars/apache2.yml
     - vars/unattended_upgrades.yml
@@ -12,11 +12,11 @@
     - vars/yubikey.yml
     - vars/elastic.yml
   roles:
-    - {role: pajavyskocil.apache2, tag: install }
-    - {role: pajavyskocil.unattended_upgrades, tag: install }
-    - {role: pajavyskocil.metacentrum_monitoring, tag: install }
-    - {role: pajavyskocil.yubikeys, tag: install }
-    - {role: pajavyskocil.shibboleth, tags: install }
-    - {role: pajavyskocil.elk_stack}
+#    - {role: pajavyskocil.apache2}
+#    - {role: pajavyskocil.unattended_upgrades}
+#    - {role: pajavyskocil.metacentrum_monitoring}
+#    - {role: pajavyskocil.yubikeys}
+    - {role: pajavyskocil.shibboleth}
+#    - {role: pajavyskocil.elk_stack}
 
 

@@ -1,0 +1,19 @@
+---
+apache_package:
+  Debian:
+    - apache2
+    - cronolog
+
+apache_modules:
+  - headers
+  - ssl
+
+apache_service:
+  Debian:
+    apache2
+
+apache_remove_sites: []
+
+apache_create_sites: []
+
+apache_enable_sites: []

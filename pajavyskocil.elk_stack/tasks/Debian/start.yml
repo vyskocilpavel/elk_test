@@ -1,0 +1,9 @@
+---
+- name: Start Logstash | Elasticsearch | Kibana
+  service:
+    state: started
+    name: "{{ item }}"
+  with_items:
+    - logstash
+    - elasticsearch
+    - kibana

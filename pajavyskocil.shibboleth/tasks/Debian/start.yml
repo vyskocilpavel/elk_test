@@ -1,0 +1,5 @@
+---
+- name: Start shibd
+  service:
+    state: started
+    name: "shibd"

@@ -1,0 +1,12 @@
+---
+- include_tasks: "Debian/install.yml"
+  when: action in ["install"]
+
+- include_tasks: "Debian/configure.yml"
+  when: action in ["install", "update"]
+
+- include_tasks: "Debian/start.yml"
+  when: action in ["start"]
+
+- include_tasks: "Debian/stop.yml"
+  when: action in ["stop"]

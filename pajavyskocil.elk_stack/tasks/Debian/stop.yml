@@ -1,0 +1,9 @@
+---
+- name: Stop Logstash | Elasticsearch | Kibana
+  service:
+    state: stopped
+    name: "{{ item }}"
+  with_items:
+    - logstash
+    - elasticsearch
+    - kibana

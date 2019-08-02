@@ -1,0 +1,14 @@
+---
+# specific tasks
+- include_tasks: "{{ ansible_distribution }}-{{ ansible_distribution_major_version }}.yml"
+
+- name: Generate Shibboleth key and cert
+  command: shib-keygen -h {{ hostname }} -e {{ shib_sp_entity_id }}
+  args:
+    chdir: /etc/shibboleth
+    creates: /etc/shibboleth/sp-key.pem
+  notify:
+    - "restart shibd"
+
+- name: Restart server if needed
+  meta: flush_handlers

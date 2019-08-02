@@ -1,0 +1,3 @@
+---
+# common tasks
+- include_tasks: "{{ ansible_distribution }}.yml"
