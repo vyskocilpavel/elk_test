@@ -22,5 +22,5 @@ kibana_server_port: "5601"
 kibana_server_base_path: "/"
 
 kibana_server_ssl_enabled: True
-kibana_server_ssl_cert: "/etc/ssl/certs/ssl-cert-snakeoil.pem"
-kibana_server_ssl_path: "/etc/ssl/private/ssl-cert-snakeoil.key"
+kibana_server_ssl_cert: "/etc/kibana/ssl/ssl-cert-snakeoil.pem"
+kibana_server_ssl_path: "/etc/kibana/ssl/ssl-cert-snakeoil.key"

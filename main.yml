@@ -12,11 +12,11 @@
     - vars/yubikey.yml
     - vars/elastic.yml
   roles:
-    # - {role: pajavyskocil.apache2, tag: install }
-    # - {role: pajavyskocil.unattended_upgrades, tag: install }
-    # - {role: pajavyskocil.metacentrum_monitoring, tag: install }
-    # - {role: pajavyskocil.yubikeys, tag: install }
-#    - {role: pajavyskocil.shibboleth, tags: install }
+    - {role: pajavyskocil.apache2, tag: install }
+    - {role: pajavyskocil.unattended_upgrades, tag: install }
+    - {role: pajavyskocil.metacentrum_monitoring, tag: install }
+    - {role: pajavyskocil.yubikeys, tag: install }
+    - {role: pajavyskocil.shibboleth, tags: install }
     - {role: pajavyskocil.elk_stack}
 
 

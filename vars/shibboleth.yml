@@ -3,7 +3,6 @@
 # Module settings #
 ###################
 
-hostname: "sp_entityid.com"
 shib_sp_entity_id: "https://sp_entityid.com/sp/"
 shib_remote_user: 
   - epuid
