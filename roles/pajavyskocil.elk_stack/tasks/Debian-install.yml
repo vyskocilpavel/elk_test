@@ -1,22 +1,17 @@
 ---
 # Install java
-- include_tasks: "{{ ansible_distribution }}-{{ ansible_distribution_major_version }}.yml"
-
+- include_tasks: "{{ ansible_os_family }}-{{ ansible_distribution_major_version }}.yml"
 
 - name: Add Elastic apt key.
   apt_key:
     url: https://artifacts.elastic.co/GPG-KEY-elasticsearch
     state: present
-  tags: install
 
 - name: Add elastic repository.
   apt_repository:
     repo: 'deb https://artifacts.elastic.co/packages/{{ elastic_version }}/apt stable main'
     state: present
-  tags:
-    - install
 
-###
 - name: Logstash | Install | Check if Logstash is already installed.
   stat: path=/etc/init.d/logstash
   register: logstash_installed
@@ -36,20 +31,8 @@
     group: logstash
     groups: adm
   notify: restart logstash
-  tags: "update"
-
-- name: Logstash | Configure | Prepare base configuration
-  template:
-    src: "logstash.yml.j2"
-    dest: "/etc/logstash/logstash.yml"
-    force: yes
-    mode: 0644
-  notify: restart logstash
-  tags:
-    - "update"
 
 
-###
 - name: Elasticsearch | Install | Check if Elasticsearch is already installed.
   stat: path=/etc/init.d/elasticsearch
   register: elasticsearch_installed
@@ -70,23 +53,13 @@
     groups: adm
   notify: restart elasticsearch
 
-- name: Elasticsearch | Configure | Prepare base configuration
-  template:
-    src: "elasticsearch.yml.j2"
-    dest: "/etc/elasticsearch/elasticsearch.yml"
-    force: yes
-    mode: 0644
-  notify: restart elasticsearch
-  tags: update
-
-###
 - name: Kibana | Install | Check if Kibana is already installed.
   stat: path=/etc/init.d/kibana
   register: kibana_installed
 
 - name: Kibana | Install | Update apt cache if repository just added.
   apt: update_cache=yes
-  when: not kibana_installed.stat.exists
+  when: action == "install" and not kibana_installed.stat.exists
 
 - name: Kibana | Install | Install Kibana.
   apt:
@@ -99,13 +72,3 @@
     group: kibana
     groups: adm
   notify: restart kibana
-
-- name: Kibana | Configure | Prepare base configuration
-  template:
-    src: "kibana.yml.j2"
-    dest: "/etc/kibana/kibana.yml"
-    force: yes
-    mode: 0644
-  notify: restart kibana
-  tags:
-    - update

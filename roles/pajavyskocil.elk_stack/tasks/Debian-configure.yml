@@ -1,0 +1,24 @@
+---
+- name: Logstash | Configure | Prepare base configuration
+  template:
+    src: "logstash.yml.j2"
+    dest: "/etc/logstash/logstash.yml"
+    force: yes
+    mode: 0644
+  notify: restart logstash
+
+- name: Elasticsearch | Configure | Prepare base configuration
+  template:
+    src: "elasticsearch.yml.j2"
+    dest: "/etc/elasticsearch/elasticsearch.yml"
+    force: yes
+    mode: 0644
+  notify: restart elasticsearch
+
+- name: Kibana | Configure | Prepare base configuration
+  template:
+    src: "kibana.yml.j2"
+    dest: "/etc/kibana/kibana.yml"
+    force: yes
+    mode: 0644
+  notify: restart kibana
